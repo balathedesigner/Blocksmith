@@ -101,8 +101,6 @@ export default function DateTimePickerPlayground() {
     props: {
       mode,
       value,
-      minDate: minDate ? new Date(minDate) : undefined,
-      maxDate: maxDate ? new Date(maxDate) : undefined,
       minTime: minTime || undefined,
       maxTime: maxTime || undefined,
       disabled,
@@ -143,8 +141,6 @@ export default function DateTimePickerPlayground() {
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>mode</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>'date' | 'date-range' | 'time' | 'time-range'</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Picker mode</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>value</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>Date | [Date, Date] | string | [string, string]</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Current value</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>onChange</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>(value) =&gt; void</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Change handler</td></tr>
-        <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>minDate</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>Date</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Minimum date</td></tr>
-        <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>maxDate</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>Date</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Maximum date</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>minTime</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>string</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Minimum time ("HH:mm")</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>maxTime</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>string</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Maximum time ("HH:mm")</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>disabled</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>boolean</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Disable the picker</td></tr>
@@ -163,8 +159,6 @@ export default function DateTimePickerPlayground() {
           value={value}
           onChange={setValue}
           label="Date/Time Picker"
-          minDate={minDate ? new Date(minDate) : undefined}
-          maxDate={maxDate ? new Date(maxDate) : undefined}
           minTime={minTime || undefined}
           maxTime={maxTime || undefined}
           disabled={disabled}
