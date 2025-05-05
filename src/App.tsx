@@ -1,7 +1,7 @@
 import { BadgeCheck, AlignJustify, MousePointerClick, Search, List, CheckSquare, CalendarClock } from 'lucide-react'
 import './App.css'
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import AccordionPlayground from './components/AccordionPlayground'
 import BadgePlayground from './components/BadgePlayground'
 import TextInputPlayground from './components/TextInputPlayground'
@@ -184,8 +184,8 @@ function LandingPage() {
             <span style={{ fontWeight: 700, fontSize: 22, color: '#fff', letterSpacing: '-1px' }}>Blocksmith UI</span>
           </div>
           <div style={{ display: 'flex', gap: 32 }}>
-            <a href="#about" style={{ color: '#fff', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>About</a>
-            <a href="#contact" style={{ color: '#fff', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>Contact</a>
+            <Link to="/about" style={{ color: '#fff', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>About</Link>
+            <Link to="/contact" style={{ color: '#fff', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>Contact</Link>
           </div>
         </div>
         {/* Hero Content */}
@@ -295,11 +295,34 @@ function LandingPage() {
   )
 }
 
+function ComingSoon({ title }: { title: string }) {
+  return (
+    <div style={{ minHeight: 400, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#6366f1', fontSize: 28, fontWeight: 600 }}>
+      <span>{title}</span>
+      <span style={{ fontSize: 20, color: '#888', marginTop: 12 }}>Coming Soon</span>
+    </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ width: '100%', padding: '24px 0 12px 0', background: '#23272f', color: '#fff', textAlign: 'center', marginTop: 40 }}>
+      <div style={{ fontSize: 16, marginBottom: 8 }}>
+        <a href="mailto:boobalankannan6@gmail.com" style={{ color: '#a5b4fc', marginRight: 18, textDecoration: 'underline' }}>boobalankannan6@gmail.com</a>
+        <a href="https://www.linkedin.com/in/boopalakannan-kamaraj-aa3603144/" target="_blank" rel="noopener noreferrer" style={{ color: '#a5b4fc', textDecoration: 'underline' }}>LinkedIn</a>
+      </div>
+      <div style={{ fontSize: 14, color: '#94a3b8' }}>© {new Date().getFullYear()} Blocksmith UI</div>
+    </footer>
+  );
+}
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<ComingSoon title="About" />} />
+        <Route path="/contact" element={<ComingSoon title="Contact" />} />
         <Route path="/playground/accordion" element={<AccordionPlayground />} />
         <Route path="/playground/alert" element={<AlertPlayground />} />
         <Route path="/playground/badge" element={<BadgePlayground />} />
@@ -310,6 +333,7 @@ export default function App() {
         <Route path="/playground/table" element={<TablePlayground />} />
         <Route path="/playground/date-time-picker" element={<DateTimePickerPlayground />} />
       </Routes>
-    </BrowserRouter>
+      <Footer />
+    </Router>
   )
 }
