@@ -12,8 +12,6 @@ export interface DateTimePickerProps {
   value: Date | [Date, Date] | string | [string, string];
   onChange: (value: Date | [Date, Date] | string | [string, string]) => void;
   label?: string;
-  minDate?: Date;
-  maxDate?: Date;
   minTime?: string; // "HH:mm"
   maxTime?: string;
   disabled?: boolean;
@@ -84,8 +82,6 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
   value,
   onChange,
   label,
-  minDate,
-  maxDate,
   minTime,
   maxTime,
   disabled,
@@ -221,10 +217,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
               <CalendarPicker
                 selected={value as Date | [Date, Date]}
                 onSelect={handleDateSelect}
-                minDate={minDate}
-                maxDate={maxDate}
                 mode={mode === 'date' ? 'date' : 'date-range'}
-                onClose={() => setOpen(false)}
               />
             ) : (
               <TimePicker
@@ -233,7 +226,6 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                 minTime={minTime}
                 maxTime={maxTime}
                 mode={mode === 'time' ? 'time' : 'time-range'}
-                onClose={() => setOpen(false)}
               />
             )}
           </Popover>,

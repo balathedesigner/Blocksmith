@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import styled from 'styled-components';
-import { Pencil, Trash2, Package, ShoppingCart, Headphones, Monitor, Mouse, Keyboard, Usb, Speaker, CheckSquare, Square } from 'lucide-react';
+import { Pencil, Trash2, Package, Headphones, Monitor, CheckSquare, Square } from 'lucide-react';
 
 // Dummy Table component for preview (replace with your real Table component)
 const TableWrapper = styled.div`
@@ -111,7 +111,7 @@ const StatusBadge = styled.span<{ status: string }>`
 
 function Table({ columns, data, selectable, loading, error, pagination, sortColumn, sortDirection, onSort, actionsEnabled, onDeleteRow }: {
   columns: string[];
-  data: Array<Record<string, any>>;
+  data: Array<Record<string, unknown>>;
   selectable: boolean;
   loading: boolean;
   error: boolean;
@@ -222,12 +222,12 @@ function Table({ columns, data, selectable, loading, error, pagination, sortColu
                 {columns.map(col => (
                   <td key={col}>
                     <CellContent>
-                      {col === 'Product Name' && getProductAvatar(row[col])}
-                      {col === 'Category' && getProductIcon(row[col])}
+                      {col === 'Product Name' && getProductAvatar(row[col] as string)}
+                      {col === 'Category' && getProductIcon(row[col] as string)}
                       {col === 'Status' ? (
-                        <StatusBadge status={row[col]}>{row[col]}</StatusBadge>
+                        <StatusBadge status={row[col] as string}>{row[col] as string}</StatusBadge>
                       ) : (
-                        row[col]
+                        row[col] as React.ReactNode
                       )}
                     </CellContent>
                   </td>

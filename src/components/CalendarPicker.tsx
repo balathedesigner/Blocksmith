@@ -147,7 +147,7 @@ export const CalendarPicker: React.FC<CalendarPickerProps> = ({
   };
 
   // Render calendar grid (6 weeks)
-  const days: JSX.Element[] = [];
+  const days: React.ReactNode[] = [];
   let dayNum = 1;
   for (let week = 0; week < 6; week++) {
     for (let d = 0; d < 7; d++) {
