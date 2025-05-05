@@ -1,19 +1,9 @@
 import React, { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import styled from 'styled-components';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Info, Check, AlertTriangle, XCircle, Star, X } from 'lucide-react';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
-
-const ICONS = [
-  { name: 'Info', component: Info },
-  { name: 'Check', component: Check },
-  { name: 'Warning', component: AlertTriangle },
-  { name: 'Error', component: XCircle },
-  { name: 'Star', component: Star },
-];
 
 const StyledBadge = styled.span<{ color: string; variant: string; size: string; disabled?: boolean }>`
   display: inline-flex;
@@ -42,7 +32,7 @@ const StyledBadge = styled.span<{ color: string; variant: string; size: string; 
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
 `;
 
-const STATE_ICON_MAP: Record<string, any> = {
+const STATE_ICON_MAP: Record<string, React.ElementType> = {
   Primary: Info,
   Success: Check,
   Error: XCircle,

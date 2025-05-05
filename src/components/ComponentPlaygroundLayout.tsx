@@ -209,7 +209,7 @@ const TabButton = styled.button<{ active: boolean }>`
 `;
 
 const TabContent = styled.section<{ isCode?: boolean }>`
-  background: ${({ isCode, theme }) => isCode ? '#292c34' : '#e5e7eb'};
+  background: ${({ isCode }) => isCode ? '#292c34' : '#e5e7eb'};
   border-radius: 12px;
   min-height: 100px;
   max-height: 220px;

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import styled from 'styled-components';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Search, User, Mail, Lock, Eye, Loader2, Hash } from 'lucide-react';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
@@ -277,8 +275,6 @@ export default function TextInputPlayground() {
   const [helperText, setHelperText] = useState('');
   const [state, setState] = useState<'default' | 'error' | 'success' | 'warning'>('default');
 
-  // Helper for disabling label input
-  const labelInputDisabled = !showLabel;
   // Helper for mandatory helper text
   const showMandatoryHelper = !showLabel && required && !helperText;
 

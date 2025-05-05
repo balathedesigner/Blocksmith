@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import { Accordion, AccordionItem } from './Accordion';
 import styled from 'styled-components';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
 

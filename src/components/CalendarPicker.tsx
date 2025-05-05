@@ -7,10 +7,7 @@ type CalendarMode = 'date' | 'date-range';
 interface CalendarPickerProps {
   selected: Date | [Date, Date];
   onSelect: (date: Date | [Date, Date]) => void;
-  minDate?: Date;
-  maxDate?: Date;
   mode: CalendarMode;
-  onClose?: () => void;
 }
 
 const CalendarContainer = styled.div`
@@ -128,10 +125,7 @@ const DAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 export const CalendarPicker: React.FC<CalendarPickerProps> = ({
   selected,
   onSelect,
-  minDate,
-  maxDate,
   mode,
-  onClose,
 }) => {
   const today = new Date();
   const [viewDate, setViewDate] = React.useState(() => selected instanceof Date ? selected : selected[0] || today);
@@ -215,7 +209,7 @@ export const CalendarPicker: React.FC<CalendarPickerProps> = ({
         {days}
       </div>
       <ActionsRow>
-        <ActionLink onClick={() => onSelect(mode === 'date' ? null : [null, null])}>Clear</ActionLink>
+        <ActionLink onClick={() => onSelect(mode === 'date' ? today : [today, today])}>Clear</ActionLink>
         <ActionLink onClick={() => onSelect(today)}>Today</ActionLink>
       </ActionsRow>
     </CalendarContainer>

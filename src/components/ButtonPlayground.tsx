@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import { Button } from './Button';
 import styled from 'styled-components';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { User, Mail, Check, X, Loader2, ArrowRight, ArrowLeft, Plus, Minus } from 'lucide-react';
+import { User } from 'lucide-react';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
 
-const TYPES = ['button', 'submit', 'reset'] as const;
 const VARIANTS = ['solid', 'outline', 'ghost', 'link'] as const;
 const STATES = ['default', 'success', 'error', 'warning'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;

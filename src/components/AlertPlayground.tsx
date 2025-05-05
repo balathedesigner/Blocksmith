@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import Alert, { AlertVariant, AlertSize } from './Alert';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
-import { Info, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
 
 const VARIANTS: AlertVariant[] = ['info', 'success', 'warning', 'error'];
 const SIZES: AlertSize[] = ['small', 'medium', 'large'];
-const ICONS = {
-  info: <Info size={22} />,
-  success: <CheckCircle size={22} />,
-  warning: <AlertTriangle size={22} />,
-  error: <XCircle size={22} />,
-};
 
 const STYLE_TYPES = ['tinted', 'solid'] as const;
-
-const ResetButton = () => null; // Placeholder, add if needed
 
 export default function AlertPlayground() {
   const [variant, setVariant] = useState<AlertVariant>('info');

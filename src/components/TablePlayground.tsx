@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import styled from 'styled-components';
 import { Pencil, Trash2, Package, ShoppingCart, Headphones, Monitor, Mouse, Keyboard, Usb, Speaker, CheckSquare, Square } from 'lucide-react';

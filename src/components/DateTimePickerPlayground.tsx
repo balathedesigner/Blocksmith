@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import DateTimePicker from './DateTimePicker';
 import { CodePreview, CodePreviewData } from './CodePreview';

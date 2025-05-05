@@ -9,7 +9,7 @@ interface TimePickerProps {
   minTime?: string; // "HH:mm"
   maxTime?: string;
   mode: 'time' | 'time-range';
-  onClose?: () => void;
+  // onClose?: () => void;
 }
 
 const TimeContainer = styled.div`
@@ -105,7 +105,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   minTime,
   maxTime,
   mode,
-  onClose,
+  // onClose,
 }) => {
   const times = generateTimes(minTime, maxTime);
   const isSelected = (time: string) => {

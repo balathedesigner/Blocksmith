@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import styled from 'styled-components';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { User } from 'lucide-react';
 import { CustomSelect } from './CustomSelect';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
 
-const SIZES = ['small', 'medium', 'large'] as const;
 const OPTIONS = [
   { label: 'Option 1', value: 'option1' },
   { label: 'Option 2', value: 'option2' },
@@ -23,22 +20,11 @@ const StyledSelectWrapper = styled.div`
   position: relative;
 `;
 
-const LeftIconWrapper = styled.span`
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  color: #a1a1aa;
-`;
-
 function Select({ 
   label, 
   value, 
   onChange, 
   disabled, 
-  size, 
   showLabel, 
   required, 
   helperText, 
@@ -49,7 +35,6 @@ function Select({
   value: string;
   onChange: (v: string) => void;
   disabled?: boolean;
-  size: string;
   showLabel: boolean;
   required?: boolean;
   helperText?: string;
@@ -112,17 +97,14 @@ const ResetButton = styled.button`
 
 export default function SelectPlayground() {
   const [label, setLabel] = useState('Label');
-  const [value, setValue] = useState(OPTIONS[0].value);
+  const [value, setValue] = useState('');
   const [disabled, setDisabled] = useState(false);
-  const [size, setSize] = useState<typeof SIZES[number]>('medium');
   const [showLabel, setShowLabel] = useState(true);
   const [required, setRequired] = useState(false);
   const [helperText, setHelperText] = useState('');
   const [state, setState] = useState<'default' | 'error' | 'success' | 'warning'>('default');
   const [showIcon, setShowIcon] = useState(false);
 
-  // Helper for disabling label input
-  const labelInputDisabled = !showLabel;
   // Helper for mandatory helper text
   const showMandatoryHelper = !showLabel && required && !helperText;
 
@@ -130,7 +112,6 @@ export default function SelectPlayground() {
     setLabel('Label');
     setValue(OPTIONS[0].value);
     setDisabled(false);
-    setSize('medium');
     setShowLabel(true);
     setRequired(false);
     setHelperText('');
@@ -171,7 +152,6 @@ export default function SelectPlayground() {
     props: {
       ...(showLabel && { label }),
       value,
-      size,
       ...(disabled && { disabled: true }),
       ...(required && { required: true }),
       ...(state !== 'default' && { state }),
@@ -213,7 +193,7 @@ export default function SelectPlayground() {
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>value</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>string</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Selected value</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>onChange</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>{'(value: string) => void'}</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Change handler</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>disabled</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>boolean</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Disables the select</td></tr>
-        <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>size</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>'small' | 'medium' | 'large'</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Select size</td></tr>
+        <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>showLabel</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>boolean</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Show label</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>required</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>boolean</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Field is required</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>helperText</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>string</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Helper text below the select</td></tr>
         <tr><td style={{ padding: '8px', color: '#f3f4f6' }}>state</td><td style={{ padding: '8px' }}><code style={{ color: '#a5b4fc' }}>'default' | 'error' | 'success' | 'warning'</code></td><td style={{ padding: '8px', color: '#f3f4f6' }}>Visual state</td></tr>
@@ -254,13 +234,6 @@ export default function SelectPlayground() {
         },
         {
           type: 'select',
-          label: 'Size',
-          options: SIZES as unknown as string[],
-          value: size,
-          onChange: v => setSize(v as typeof SIZES[number]),
-        },
-        {
-          type: 'select',
           label: 'State',
           options: ['default', 'error', 'success', 'warning'],
           value: state,
@@ -285,7 +258,6 @@ export default function SelectPlayground() {
           value={value}
           onChange={setValue}
           disabled={disabled}
-          size={size}
           showLabel={showLabel}
           required={required}
           helperText={showMandatoryHelper ? 'This field is mandatory' : helperText}

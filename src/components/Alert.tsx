@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Info, CheckCircle, AlertTriangle, XCircle, X } from 'lucide-react';
 
 export type AlertVariant = 'info' | 'success' | 'warning' | 'error';
