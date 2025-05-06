@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Info, Check, AlertTriangle, XCircle, Star, X } from 'lucide-react';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
+import { Button } from './Button';
 
 const StyledBadge = styled.span<{ color: string; variant: string; size: string; disabled?: boolean }>`
   display: inline-flex;
@@ -94,24 +95,6 @@ const STATES: BadgeState[] = [
 const VARIANTS = ['solid', 'outline', 'tinted'] as const;
 const SIZES = ['small', 'medium', 'large'] as const;
 const ICON_POSITIONS = ['none', 'left', 'right', 'both'] as const;
-
-const ResetButton = styled.button`
-  margin-top: 16px;
-  padding: 6px 16px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: #f3f4f6;
-  color: #333;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-  &:hover, &:focus-visible {
-    background: #e5e7eb;
-    border-color: #6366f1;
-    color: #222;
-    outline: none;
-  }
-`;
 
 export default function BadgePlayground() {
   const [label, setLabel] = useState('Badge');
@@ -293,7 +276,11 @@ export default function BadgePlayground() {
       )}
       renderCode={() => <CodePreview formats={formats} />}
       renderApi={() => apiReference}
-      renderControlsFooter={() => <ResetButton onClick={handleReset}>Reset</ResetButton>}
+      renderControlsFooter={() => (
+        <Button variant="solid" size="medium" onClick={handleReset} style={{ marginTop: 16 }}>
+          Reset
+        </Button>
+      )}
     />
   );
 } 

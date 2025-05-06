@@ -3,6 +3,7 @@ import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import Alert, { AlertVariant, AlertSize } from './Alert';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
+import { Button } from './Button';
 
 const VARIANTS: AlertVariant[] = ['info', 'success', 'warning', 'error'];
 const SIZES: AlertSize[] = ['small', 'medium', 'large'];
@@ -93,6 +94,16 @@ export default function AlertPlayground() {
     },
   ];
 
+  const handleReset = () => {
+    setVariant('info');
+    setSize('medium');
+    setTitle('Alert Title');
+    setDescription('This is an alert description.');
+    setShowIcon(true);
+    setClosable(false);
+    setStyleType('tinted');
+  };
+
   return (
     <ComponentPlaygroundLayout
       componentName="Alert"
@@ -156,6 +167,11 @@ export default function AlertPlayground() {
         />
       )}
       renderCode={() => <CodePreview formats={formats} />}
+      renderControlsFooter={() => (
+        <Button variant="solid" size="medium" onClick={handleReset} style={{ marginTop: 16 }}>
+          Reset
+        </Button>
+      )}
     />
   );
 } 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import styled from 'styled-components';
 import { Pencil, Trash2, Package, Headphones, Monitor, CheckSquare, Square } from 'lucide-react';
+import { Button } from './Button';
 
 // Dummy Table component for preview (replace with your real Table component)
 const TableWrapper = styled.div`
@@ -316,41 +317,6 @@ export default function TablePlayground() {
     setActionsEnabled(false);
   };
 
-  // Add column
-  const handleAddColumn = () => {
-    const nextColNum = columns.length + 1;
-    const newCol = `Custom Field ${nextColNum}`;
-    setColumns(cols => [...cols, newCol]);
-    setData(rows => rows.map(row => ({ ...row, [newCol]: 'N/A' })));
-  };
-
-  // Remove last column
-  const handleRemoveColumn = () => {
-    if (columns.length === 0) return;
-    const colToRemove = columns[columns.length - 1];
-    setColumns(cols => cols.slice(0, -1));
-    setData(rows => rows.map(row => {
-      const { [colToRemove]: _, ...rest } = row;
-      return rest;
-    }));
-  };
-
-  // Add row
-  const handleAddRow = () => {
-    const nextRowNum = data.length + 1;
-    const newRow: Record<string, string> = {};
-    columns.forEach((col, j) => {
-      newRow[col] = `Value ${nextRowNum}-${j + 1}`;
-    });
-    setData(rows => [...rows, newRow]);
-  };
-
-  // Remove last row
-  const handleRemoveRow = () => {
-    if (data.length === 0) return;
-    setData(rows => rows.slice(0, -1));
-  };
-
   // Sorting logic
   const handleSort = (col: string) => {
     if (sortColumn === col) {
@@ -431,25 +397,9 @@ export default function TablePlayground() {
         />
       )}
       renderControlsFooter={() => (
-        <>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 16, alignItems: 'center' }}>
-            {/* Column Counter */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontWeight: 500 }}>Columns:</span>
-              <button onClick={handleRemoveColumn} style={{ padding: '2px 8px', borderRadius: 4, border: '1px solid #ccc', background: '#f3f4f6', color: '#333', cursor: 'pointer', fontSize: 16, fontWeight: 600 }}>-</button>
-              <span style={{ minWidth: 24, textAlign: 'center', fontWeight: 500 }}>{columns.length}</span>
-              <button onClick={handleAddColumn} style={{ padding: '2px 8px', borderRadius: 4, border: '1px solid #ccc', background: '#f3f4f6', color: '#333', cursor: 'pointer', fontSize: 16, fontWeight: 600 }}>+</button>
-            </div>
-            {/* Row Counter */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontWeight: 500 }}>Rows:</span>
-              <button onClick={handleRemoveRow} style={{ padding: '2px 8px', borderRadius: 4, border: '1px solid #ccc', background: '#f3f4f6', color: '#333', cursor: 'pointer', fontSize: 16, fontWeight: 600 }}>-</button>
-              <span style={{ minWidth: 24, textAlign: 'center', fontWeight: 500 }}>{data.length}</span>
-              <button onClick={handleAddRow} style={{ padding: '2px 8px', borderRadius: 4, border: '1px solid #ccc', background: '#f3f4f6', color: '#333', cursor: 'pointer', fontSize: 16, fontWeight: 600 }}>+</button>
-            </div>
-          </div>
-          <button onClick={handleReset} style={{ marginTop: 12, padding: '6px 16px', fontSize: 14, borderRadius: 6, border: '1px solid #ccc', background: '#f3f4f6', color: '#333', cursor: 'pointer', display: 'block' }}>Reset</button>
-        </>
+        <Button variant="solid" size="medium" onClick={handleReset} style={{ marginTop: 16 }}>
+          Reset
+        </Button>
       )}
     />
   );

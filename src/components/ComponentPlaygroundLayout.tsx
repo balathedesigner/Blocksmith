@@ -5,6 +5,7 @@ import { Sun, Moon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PreviewWrapper } from './PreviewWrapper';
 import { CustomSelect } from './CustomSelect';
+import { Button } from './Button';
 
 // Theme objects
 export const lightTheme: DefaultTheme = {
@@ -70,6 +71,11 @@ export type PlaygroundControlConfig =
       onChange: (value: string) => void;
       inputType?: string;
       disabled?: boolean;
+    }
+  | {
+      type: 'button';
+      label: string;
+      onClick: () => void;
     };
 
 const MainContainer = styled.main`
@@ -267,6 +273,7 @@ const playgroundComponents = [
   { name: 'Alert', path: '/playground/alert' },
   { name: 'Badge', path: '/playground/badge' },
   { name: 'Button', path: '/playground/button' },
+  { name: 'Card', path: '/playground/card' },
   { name: 'Checkbox', path: '/playground/checkbox' },
   { name: 'Date/Time Picker', path: '/playground/date-time-picker' },
   { name: 'Select', path: '/playground/select' },
@@ -408,6 +415,13 @@ export default function ComponentPlaygroundLayout({
                   </PlaygroundControl>
                 );
               }
+              if (ctrl.type === 'button') {
+                return (
+                  <Button key={ctrl.label} onClick={ctrl.onClick} variant="solid" size="medium" style={{ marginTop: 8 }}>
+                    {ctrl.label}
+                  </Button>
+                );
+              }
               return null;
             })}
             {renderControlsFooter && renderControlsFooter()}
@@ -417,7 +431,7 @@ export default function ComponentPlaygroundLayout({
           <div style={{ flex: 1, minWidth: 0 }}>
             <PreviewArea aria-label="Live preview area">
               <PreviewWrapper>
-                {renderPreview ? renderPreview() : 'Live preview area'}
+              {renderPreview ? renderPreview() : 'Live preview area'}
               </PreviewWrapper>
             </PreviewArea>
             {/* Tabs */}

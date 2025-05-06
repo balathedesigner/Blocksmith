@@ -3,6 +3,7 @@ import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import styled from 'styled-components';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
+import { Button } from './Button';
 
 const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   width: 20px;
@@ -28,12 +29,12 @@ function Checkbox({ label, checked, onChange, disabled, description }: {
         opacity: disabled ? 0.6 : 1,
         width: '100%'
       }}>
-        <StyledCheckbox checked={checked} onChange={e => onChange(e.target.checked)} disabled={disabled} />
+      <StyledCheckbox checked={checked} onChange={e => onChange(e.target.checked)} disabled={disabled} />
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 500, textAlign: 'left' }}>{label}</div>
           {description && <div style={{ fontSize: 14, color: '#888', marginTop: 2, textAlign: 'left' }}>{description}</div>}
-        </div>
-      </label>
+      </div>
+    </label>
     </div>
   );
 }
@@ -102,6 +103,13 @@ export default function CheckboxPlayground() {
     </table>
   );
 
+  const handleReset = () => {
+    setLabel('Checkbox label');
+    setChecked(false);
+    setDisabled(false);
+    setDescription('Optional description for the checkbox.');
+  };
+
   return (
     <ComponentPlaygroundLayout
       componentName="Checkbox"
@@ -143,6 +151,11 @@ export default function CheckboxPlayground() {
       )}
       renderCode={() => <CodePreview formats={formats} />}
       renderApi={() => apiReference}
+      renderControlsFooter={() => (
+        <Button variant="solid" size="medium" onClick={handleReset} style={{ marginTop: 16 }}>
+          Reset
+        </Button>
+      )}
     />
   );
 } 

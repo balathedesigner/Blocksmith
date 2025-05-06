@@ -5,6 +5,7 @@ import { User } from 'lucide-react';
 import { CustomSelect } from './CustomSelect';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { generateCode } from '../utils/codeGenerators';
+import { Button } from './Button';
 
 const OPTIONS = [
   { label: 'Option 1', value: 'option1' },
@@ -76,24 +77,6 @@ function Select({
     </StyledSelectWrapper>
   );
 }
-
-const ResetButton = styled.button`
-  margin-top: 16px;
-  padding: 6px 16px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: #f3f4f6;
-  color: #333;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-  &:hover, &:focus-visible {
-    background: #e5e7eb;
-    border-color: #6366f1;
-    color: #222;
-    outline: none;
-  }
-`;
 
 export default function SelectPlayground() {
   const [label, setLabel] = useState('Label');
@@ -267,7 +250,11 @@ export default function SelectPlayground() {
       )}
       renderCode={() => <CodePreview formats={formats} />}
       renderApi={() => apiReference}
-      renderControlsFooter={() => <ResetButton onClick={handleReset}>Reset</ResetButton>}
+      renderControlsFooter={() => (
+        <Button variant="solid" size="medium" onClick={handleReset} style={{ marginTop: 16 }}>
+          Reset
+        </Button>
+      )}
     />
   );
 } 

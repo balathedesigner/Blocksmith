@@ -4,6 +4,7 @@ import DateTimePicker from './DateTimePicker';
 import { CodePreview, CodePreviewData } from './CodePreview';
 import { CalendarClock } from 'lucide-react';
 import { generateCode } from '../utils/codeGenerators';
+import { Button } from './Button';
 
 const MODES = ['date', 'date-range', 'time', 'time-range'] as const;
 type PickerMode = typeof MODES[number];
@@ -168,7 +169,9 @@ export default function DateTimePickerPlayground() {
       renderCode={() => <CodePreview formats={formats} />}
       renderApi={() => apiReference}
       renderControlsFooter={() => (
-        <button onClick={handleReset} style={{ marginTop: 16, padding: '6px 16px', fontSize: 14, borderRadius: 6, border: '1px solid #ccc', background: '#f3f4f6', color: '#333', cursor: 'pointer' }}>Reset</button>
+        <Button variant="solid" size="medium" onClick={handleReset} style={{ marginTop: 16 }}>
+          Reset
+        </Button>
       )}
     />
   );

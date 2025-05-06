@@ -1,7 +1,7 @@
-import { BadgeCheck, AlignJustify, MousePointerClick, Search, List, CheckSquare, CalendarClock } from 'lucide-react'
+import { AlignJustify, AlertTriangle, User, Star, MousePointerClick, CreditCard, ChevronDown, Type, Info, List, CheckSquare, Table, CalendarClock, Search } from 'lucide-react'
 import './App.css'
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import AccordionPlayground from './components/AccordionPlayground'
 import BadgePlayground from './components/BadgePlayground'
 import TextInputPlayground from './components/TextInputPlayground'
@@ -11,6 +11,8 @@ import ButtonPlayground from './components/ButtonPlayground'
 import TablePlayground from './components/TablePlayground'
 import AlertPlayground from './components/AlertPlayground'
 import DateTimePickerPlayground from './components/DateTimePickerPlayground'
+import AboutPage from './components/AboutPage'
+import CardPlayground from './components/CardPlayground'
 
 const components = [
   {
@@ -21,19 +23,19 @@ const components = [
   },
   {
     name: 'Alert',
-    icon: <BadgeCheck size={22} />,
+    icon: <AlertTriangle size={22} />,
     description: 'Displays important messages in a prominent way.',
     link: '/playground/alert',
   },
   {
     name: 'Avatar',
-    icon: <AlignJustify size={22} />,
+    icon: <User size={22} />,
     description: 'A graphical representation of a user or entity.',
     link: '#avatar',
   },
   {
     name: 'Badge',
-    icon: <BadgeCheck size={22} />,
+    icon: <Star size={22} />,
     description: 'A small count or status indicator for UI elements.',
     link: '/playground/badge',
   },
@@ -45,25 +47,25 @@ const components = [
   },
   {
     name: 'Card',
-    icon: <MousePointerClick size={22} />,
+    icon: <CreditCard size={22} />,
     description: 'A flexible and extensible content container.',
-    link: '#card',
+    link: '/playground/card',
   },
   {
     name: 'Dropdown',
-    icon: <AlignJustify size={22} />,
+    icon: <ChevronDown size={22} />,
     description: 'A toggleable menu for displaying a list of actions.',
     link: '#dropdown',
   },
   {
     name: 'Text Input',
-    icon: <MousePointerClick size={22} />,
+    icon: <Type size={22} />,
     description: 'A single-line field for user text input.',
     link: '/playground/text-input',
   },
   {
     name: 'Tooltip',
-    icon: <BadgeCheck size={22} />,
+    icon: <Info size={22} />,
     description: 'A popup that displays information related to an element.',
     link: '#tooltip',
   },
@@ -81,7 +83,7 @@ const components = [
   },
   {
     name: 'Table',
-    icon: <List size={22} />,
+    icon: <Table size={22} />,
     description: 'A flexible table component for displaying tabular data with sorting, selection, and pagination.',
     link: '/playground/table',
   },
@@ -113,13 +115,21 @@ function LandingPage() {
         marginLeft: '-50vw',
         marginRight: '-50vw',
         background: 'linear-gradient(120deg, #23272f 60%, #2d3748 100%)',
-        color: '#fff',
+        color: '#f3f4f6',
         padding: 0,
         textAlign: 'center',
         minHeight: 480,
         display: 'flex',
         flexDirection: 'column',
       }}>
+        {/* Faint grid overlay for hero */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 40px), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 40px)',
+          zIndex: 1,
+          pointerEvents: 'none',
+        }} />
         {/* Vibrant blurred background elements */}
         <div style={{
           position: 'absolute',
@@ -184,8 +194,9 @@ function LandingPage() {
             <span style={{ fontWeight: 700, fontSize: 22, color: '#fff', letterSpacing: '-1px' }}>Blocksmith UI</span>
           </div>
           <div style={{ display: 'flex', gap: 32 }}>
-            <Link to="/about" style={{ color: '#fff', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>About</Link>
-            <Link to="/contact" style={{ color: '#fff', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>Contact</Link>
+            <Link to="/about" style={{ color: '#6366f1', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>About</Link>
+            <a href="mailto:boobalankannan6@gmail.com" style={{ color: '#6366f1', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>Mail</a>
+            <a href="https://www.linkedin.com/in/boopalakannan-kamaraj-aa3603144/" target="_blank" rel="noopener noreferrer" style={{ color: '#6366f1', fontWeight: 500, textDecoration: 'underline', fontSize: 18 }}>LinkedIn</a>
           </div>
         </div>
         {/* Hero Content */}
@@ -208,27 +219,29 @@ function LandingPage() {
 
       {/* Components Section */}
       <section style={{ width: '100%', maxWidth: 1720, margin: '48px auto 0 auto', padding: '4rem 0 3rem 0' }}>
-        <h2 style={{ textAlign: 'center', fontSize: 28, fontWeight: 600, marginBottom: 32, letterSpacing: -1 }}>Components</h2>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '0 auto 40px auto', justifyContent: 'center', maxWidth: 400 }}>
-          <div style={{ position: 'relative', width: '100%' }}>
-            <input
-              type="text"
-              placeholder="Search components..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.75rem 2.5rem 0.75rem 1rem',
-                borderRadius: 8,
-                border: '1px solid #e2e8f0',
-                fontSize: 18,
-                outline: 'none',
-                background: '#fff',
-                color: '#222',
-                boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
-              }}
-            />
-            <Search size={20} style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', color: '#888' }} />
+        <div style={{ width: '100%', maxWidth: 1720, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginBottom: 32, width: '100%' }}>
+            <h2 style={{ fontSize: 28, fontWeight: 600, letterSpacing: -1, margin: 0 }}>Components</h2>
+            <div style={{ position: 'relative', width: 220 }}>
+              <Search size={20} style={{ position: 'absolute', left: 8, top: '50%', transform: 'translateY(-50%)', color: '#888', pointerEvents: 'none' }} />
+              <input
+                type="text"
+                placeholder="Search components..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                style={{
+                  width: 220,
+                  padding: '0.75rem 1rem 0.75rem 2.5rem',
+                  borderRadius: 8,
+                  border: '1px solid #e2e8f0',
+                  fontSize: 18,
+                  outline: 'none',
+                  background: '#fff',
+                  color: '#222',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
+                }}
+              />
+            </div>
           </div>
         </div>
         <div
@@ -239,6 +252,7 @@ function LandingPage() {
             rowGap: '2.5rem',
             alignItems: 'stretch',
             width: '100%',
+            padding: '0 24px',
           }}
         >
           {filtered.length === 0 && (
@@ -306,9 +320,21 @@ function ComingSoon({ title }: { title: string }) {
 
 function Footer() {
   return (
-    <footer style={{ width: '100%', padding: '24px 0 12px 0', background: '#23272f', color: '#fff', textAlign: 'center', marginTop: 40 }}>
+    <footer style={{
+      width: '100vw',
+      position: 'relative',
+      left: '50%',
+      right: '50%',
+      marginLeft: '-50vw',
+      marginRight: '-50vw',
+      background: '#23272f',
+      color: '#fff',
+      textAlign: 'center',
+      marginTop: 40,
+      padding: '24px 0 12px 0',
+    }}>
       <div style={{ fontSize: 16, marginBottom: 8 }}>
-        <a href="mailto:boobalankannan6@gmail.com" style={{ color: '#a5b4fc', marginRight: 18, textDecoration: 'underline' }}>boobalankannan6@gmail.com</a>
+        <a href="mailto:boobalankannan6@gmail.com" style={{ color: '#a5b4fc', marginRight: 18, textDecoration: 'underline' }}>Mail</a>
         <a href="https://www.linkedin.com/in/boopalakannan-kamaraj-aa3603144/" target="_blank" rel="noopener noreferrer" style={{ color: '#a5b4fc', textDecoration: 'underline' }}>LinkedIn</a>
       </div>
       <div style={{ fontSize: 14, color: '#94a3b8' }}>© {new Date().getFullYear()} Blocksmith UI</div>
@@ -316,12 +342,13 @@ function Footer() {
   );
 }
 
-export default function App() {
+function InnerApp() {
+  const location = useLocation();
   return (
-    <Router>
+    <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/about" element={<ComingSoon title="About" />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ComingSoon title="Contact" />} />
         <Route path="/playground/accordion" element={<AccordionPlayground />} />
         <Route path="/playground/alert" element={<AlertPlayground />} />
@@ -332,8 +359,46 @@ export default function App() {
         <Route path="/playground/checkbox" element={<CheckboxPlayground />} />
         <Route path="/playground/table" element={<TablePlayground />} />
         <Route path="/playground/date-time-picker" element={<DateTimePickerPlayground />} />
+        <Route path="/playground/card" element={<CardPlayground />} />
       </Routes>
-      <Footer />
-    </Router>
-  )
+      {!location.pathname.startsWith('/playground') && <Footer />}
+    </>
+  );
 }
+
+export default function App() {
+  return (
+    <Router>
+      <InnerApp />
+    </Router>
+  );
+}
+
+/* Animations for blobs, underline, ticker */
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes blobMove1 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(20px, 30px) scale(1.08) rotate(8deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+@keyframes blobMove2 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(-30px, 10px) scale(1.12) rotate(-6deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+@keyframes blobMove3 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(15px, -20px) scale(0.95) rotate(12deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+@keyframes underlineSlide {
+  0% { width: 64px; }
+  100% { width: 120px; }
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-60%); }
+}
+`;
+document.head.appendChild(style);
