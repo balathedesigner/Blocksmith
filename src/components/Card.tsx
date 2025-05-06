@@ -199,7 +199,9 @@ export const Card: React.FC<CardProps> = ({
     {(title || headerIcon || onMenuClick) && (
       <CardHeader>
         <CardHeaderLeft>
-          {headerIcon && <IconCircle>{React.cloneElement(headerIcon as React.ReactElement, { size: 20, color: '#6366f1' })}</IconCircle>}
+          {headerIcon && React.isValidElement(headerIcon) ? (
+            <IconCircle>{React.cloneElement(headerIcon as React.ReactElement<any>, { size: 20, color: '#6366f1' })}</IconCircle>
+          ) : null}
           {title && <CardTitle size={size}>{title}</CardTitle>}
         </CardHeaderLeft>
         {onMenuClick && (

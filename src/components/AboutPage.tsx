@@ -1,10 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { BadgeCheck, AlignJustify, MousePointerClick, List } from 'lucide-react';
 
 export default function AboutPage() {
   return (
-    <div style={{ background: '#fff', minHeight: '100vh', width: '100%', fontFamily: 'inherit', overflowX: 'hidden', boxSizing: 'border-box' }}>
+    <div style={{ background: '#fff', minHeight: '100vh', width: '100%', fontFamily: 'inherit', boxSizing: 'border-box' }}>
       {/* Header/Nav */}
       <nav style={{
         width: '100%',
@@ -63,9 +62,9 @@ export default function AboutPage() {
       {/* Main Grid Content */}
       <div
         style={{
+          width: '100%',
           display: 'flex',
           justifyContent: 'center',
-          width: '100%',
           boxSizing: 'border-box',
         }}
       >
@@ -76,9 +75,9 @@ export default function AboutPage() {
             gap: 48,
             width: '100%',
             maxWidth: '1400px',
+            margin: '0 auto',
             padding: '48px 2rem 64px 2rem',
             boxSizing: 'border-box',
-            overflowX: 'hidden',
           }}
         >
           {/* Left Column */}

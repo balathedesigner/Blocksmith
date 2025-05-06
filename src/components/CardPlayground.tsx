@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ComponentPlaygroundLayout from './ComponentPlaygroundLayout';
 import { Card, CardSize } from './Card';
 import { CodePreview, CodePreviewData } from './CodePreview';
-import { Image, User, MoreVertical, Star, Mail } from 'lucide-react';
+import { User, Star, Mail } from 'lucide-react';
 
 export default function CardPlayground() {
   const [title, setTitle] = useState('Demo Card');
@@ -35,20 +35,6 @@ export default function CardPlayground() {
     { label: 'Action 2', icon: <Mail size={16} />, onClick: () => alert('Action 2') },
     { label: 'Action 3', icon: <User size={16} />, onClick: () => alert('Action 3') },
   ];
-
-  const codeProps = {
-    component: 'Card',
-    props: {
-      ...(title ? { title } : {}),
-      ...(elevation ? { elevation: true } : {}),
-      ...(size !== 'medium' ? { size } : {}),
-      ...(showThumbnail ? { thumbnail: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80' } : {}),
-      ...(showHeaderIcon ? { headerIcon: '<User />' } : {}),
-      ...(showMenu ? { onMenuClick: '() => {}' } : {}),
-      ...(footerActionCount > 0 ? { footerActions: '...' } : {}),
-    },
-    children: content,
-  };
 
   const formats: CodePreviewData[] = [
     {
@@ -114,9 +100,9 @@ export default function CardPlayground() {
         {
           type: 'select',
           label: 'Footer Actions',
-          options: [0, 1, 2, 3],
-          value: footerActionCount,
-          onChange: (v: number) => setFooterActionCount(Number(v)),
+          options: ['0', '1', '2', '3'],
+          value: String(footerActionCount),
+          onChange: (v: string) => setFooterActionCount(Number(v)),
         },
         {
           type: 'button',
